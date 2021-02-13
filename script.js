@@ -1,192 +1,183 @@
+const Players = (()=> {
+  let playerOne;
+  let playerTwo;
+  let createPlayers=()=>{
+  let chkplayer1=(!p1.value=='')?p1.value:'player1'
+  let chkplayer2=(!p2.value=='')?p2.value:'player2'
+    if (Btn1.checked){
+      playerOne =personFactory(chkplayer1,'O')
+      playerTwo =personFactory(chkplayer2,'X')
+    }else if (Btn2.checked){
+      playerOne =personFactory(chkplayer1,'X')
+      playerTwo =personFactory(chkplayer2,'O')
+    }else if (Btn2.checked&&Btn1.checked){
+      playerOne =personFactory(chkplayer1,'O')
+      playerTwo =personFactory(chkplayer2,'X')
+    }
+    return {playerOne, playerTwo}
+  }
+     return {
+       createPlayers:createPlayers,
+     }
+   })()
+
 // constructer
 const personFactory = (name,marker) => {
   return {name,marker};
 };
+// Cache html files 
+let container=document.querySelector('.container')
+let btn =document.querySelector('.submit')
+let p1 = document.querySelector('#player1')
+let p2 = document.querySelector('#player2')
+let Btn1=document.getElementById('p1')
+let Btn2=document.getElementById('p2')
+let para = document.getElementById('para')
+let footer = document.querySelector('footer')
+let reset=document.createElement('a')
+reset.classList.add('reset')
+para.textContent=''
+// Gameboard
 let gameModule=(()=>{
-  let markers=['','','','','','','','',''];
-  let gameCheck=false
-  // Cache Container
-  let container=document.querySelector('.container')
-  let btn =document.querySelector('.submit')
-  const p1 = document.querySelector('#player1')
-  const p2 = document.querySelector('#player2')
-  const body=document.querySelector('body')
-  const para = document.getElementById('para')
-  const footer = document.querySelector('footer')
-  const reset=document.createElement('a')
-  reset.classList.add('reset')
-  const radioBtn1=document.getElementById('p1').checked
-  const radioBtn2=document.getElementById('p2').checked
-  para.textContent=''
-  // Clear Cotainer And Make The Divs  
-  const makeDivs=(e)=> { 
-  container.innerHTML='' 
-  for (let i=0;i<9;i++){
-  const div = document.createElement("div");
-  div.setAttribute('id',`${i}`)
-  div.classList.add('div');
-  container.appendChild(div);
+  let markers=['','','','','','','','',''];  
+  return{
+    markers
   }
-  container.classList.add('grid');
-  footer.appendChild(reset)
-  reset.textContent='Reset'
-  console.log(reset)
- players()
- divEvent()
-}
-// Make The Players
-let playerOne;
-let playerTwo;
+})();
 
-function players(){
-if (radioBtn1==true){
-  if (p1.value&&p2.value){
-    playerOne =personFactory(p1.value,'O')
-    playerTwo =personFactory(p2.value,'X')
-    }else if (p1.value&&p2.value==''){
-    playerOne =personFactory(p1.value,'O')
-    playerTwo =personFactory('player2','X')
-    }else if(p2.value&&p1.value==''){
-    playerOne =personFactory('player1','O')
-    playerTwo =personFactory(p2.value,'X')
-    }else if (p1.value==''&&p2.value==''){
-    playerOne =personFactory('player1','O')
-    playerTwo =personFactory('player2','X')
+// Responsible for The Display 
+  
+  
+  // Making Players According to UserInput
+
+
+
+  // Checks For Winner And Changes The Display Text To congratulate The Winner
+  const checkWin= (()=>{
+  let chk;
+  playerOne=Players.createPlayers().playerOne
+  playerTwo=Players.createPlayers().playerTwo
+  const test = ()=>{
+    if(gameModule.markers[0]==playerOne.marker&&gameModule.markers[1]==playerOne.marker&&gameModule.markers[2]==playerOne.marker||
+      gameModule.markers[0]==playerTwo.marker&&gameModule.markers[1]==playerTwo.marker&&gameModule.markers[2]==playerTwo.marker){
+      chk=gameModule.markers[0]==playerOne.marker?playerOne.name:playerTwo.name
+      para.textContent=chk+' '+'won'
+      }else if (gameModule.markers[0]==playerOne.marker&&gameModule.markers[3]==playerOne.marker&&gameModule.markers[6]==playerOne.marker||
+      gameModule.markers[0]==playerTwo.marker&&gameModule.markers[3]==playerTwo.marker&&gameModule.markers[6]==playerTwo.marker){
+      chk=gameModule.markers[0]==playerOne.marker?playerOne.name:pl 
+      para.textContent=chk+' '+'won'
+      }else if (gameModule.markers[0]==playerOne.marker&&gameModule.markers[4]==playerOne.marker&&gameModule.markers[8]==playerOne.marker||
+      gameModule.markers[0]==playerTwo.marker&&gameModule.markers[4]==playerTwo.marker&&gameModule.markers[8]==playerTwo.marker){
+      chk=gameModule.markers[0]==playerOne.marker?playerOne.name:playerTwo.name
+      para.textContent=chk+' '+'won'
+      }else if (gameModule.markers[1]==playerOne.marker&&gameModule.markers[4]==playerOne.marker&&gameModule.markers[7]==playerOne.marker||
+      gameModule.markers[1]==playerTwo.marker&&gameModule.markers[4]==playerTwo.marker&&gameModule.markers[7]==playerTwo.marker){
+      chk=gameModule.markers[1]==playerOne.marker?playerOne.name:playerTwo.name
+      para.textContent=chk+' '+'won'
+      }else if (gameModule.markers[2]==playerOne.marker&&gameModule.markers[4]==playerOne.marker&&gameModule.markers[6]==playerOne.marker||
+      gameModule.markers[2]==playerTwo.marker&&gameModule.markers[4]==playerTwo.marker&&gameModule.markers[6]==playerTwo.marker){
+      chk=gameModule.markers[2]==playerOne.marker?playerOne.name:playerTwo.name
+      para.textContent=chk+' '+'won'
+      }else if (gameModule.markers[2]==playerOne.marker&&gameModule.markers[5]==playerOne.marker&&gameModule.markers[8]==playerOne.marker||
+      gameModule.markers[2]==playerTwo.marker&&gameModule.markers[5]==playerTwo.marker&&gameModule.markers[8]==playerTwo.marker){
+      chk=gameModule.markers[2]==playerOne.marker?playerOne.name:playerTwo.name
+      para.textContent=chk+' '+'won'
+      }
+      else if (gameModule.markers[3]==playerOne.marker&&gameModule.markers[4]==playerOne.marker&&gameModule.markers[5]==playerOne.marker||
+      gameModule.markers[3]==playerTwo.marker&&gameModule.markers[4]==playerTwo.marker&&gameModule.markers[5]==playerTwo.marker){
+      chk=gameModule.markers[3]==playerOne.marker?playerOne.name:playerTwo.name
+      para.textContent=chk+' '+'won'
+      }else if (gameModule.markers[0]==playerOne.marker&&gameModule.markers[4]==playerOne.marker&&gameModule.markers[8]==playerOne.marker||
+      gameModule.markers[0]==playerTwo.marker&&gameModule.markers[4]==playerTwo.marker&&gameModule.markers[8]==playerTwo.marker){
+      chk=gameModule.markers[4]==playerOne.marker?playerOne.name:playerTwo.name
+      para.textContent=chk+' '+'won'
+      }else if (gameModule.markers[6]==playerOne.marker&&gameModule.markers[7]==playerOne.marker&&gameModule.markers[8]==playerOne.marker||
+      gameModule.markers[6]==playerTwo.marker&&gameModule.markers[7]==playerTwo.marker&&gameModule.markers[8]==playerTwo.marker){
+      chk=gameModule.markers[6]==playerOne.marker?playerOne.name:playerTwo.name
+      para.textContent=chk+' '+'won'
+      }else if((gameModule.markers.length==9)&&(!gameModule.markers.includes(''))){
+        para.textContent=`it's a tie`
+      }
+  }
+  return {
+    test:test
+  }
+})()
+
+
+
+
+const displayController =(()=>{
+  const makeDivs=()=> {
+    container.innerHTML='' 
+    for (let i=0;i<9;i++){
+    const div = document.createElement("div");
+    div.setAttribute('id',`${i}`)
+    div.classList.add('div');
+    container.appendChild(div);
     }
-}else if (radioBtn1==false&&radioBtn2==true){
-  if (p1.value&&p2.value){
-    playerOne =personFactory(p1.value,'X')
-    playerTwo =personFactory(p2.value,'O')
-    }else if (p1.value&&p2.value==''){
-    playerOne =personFactory(p1.value,'X')
-    playerTwo =personFactory('player2','O')
-    }else if(p2.value&&p1.value==''){
-    playerOne =personFactory('player1','X')
-    playerTwo =personFactory(p2.value,'O')
-    }else if (p1.value==''&&p2.value==''){
-    playerOne =personFactory('player1','X')
-    playerTwo =personFactory('player2','O')
-    }
-}
-}  
-//  eventListener For Divs
- function divEvent(){
+    container.classList.add('grid');
+    footer.appendChild(reset)
+    reset.textContent='Reset'
+    divEvent()
+
+    Players.createPlayers()
+  }
+  
+  function divEvent(){
     let last=''
     const divs=document.querySelectorAll('.div')
     for (let i=0;i<divs.length;i++){
-    console.log(para.textContent)
-    if (!para.textContent){
+    if (para.textContent==''){
       divs[i].addEventListener('click',checkState)
-    }else if (para.textContent==playerOne.name+' '+'won'){
-      divs[i].removeEventListener('click',checkState)
-    }else if (para.textContent==playerTwo.name+' '+'won'){
+    }else if (!para.textContent){
       divs[i].removeEventListener('click',checkState)
     }
-
       function checkState(){
-        checkWin()
+        playerOne=Players.createPlayers().playerOne
+        playerTwo=Players.createPlayers().playerTwo
+        if (!para.textContent==''){
+          return
+        }
         if (divs[i].textContent==''){
           if (last==playerTwo.marker||lastReset=='something'){
             lastReset=''
             divs[i].textContent=playerOne.marker
             last=playerOne.marker
-            markers[i]=last
-            checkWin()
+            gameModule.markers[i]=last
+            checkWin.test()
           }else if (last==playerOne.marker){
             divs[i].textContent=playerTwo.marker
             last=playerTwo.marker
-            markers[i]=last
-            checkWin()
+            gameModule.markers[i]=last
+            checkWin.test()
           }else if (last==''){
             divs[i].textContent=playerOne.marker
             last=playerOne.marker
-            markers[i]=last
-            checkWin()
+            gameModule.markers[i]=last
+            checkWin.test()
+
           }
         }
       }
       }
-}
-//  last if win
-const checkWin=()=>{
-    let chk;
-    if(markers[0]==playerOne.marker&&markers[1]==playerOne.marker&&markers[2]==playerOne.marker||
-    markers[0]==playerTwo.marker&&markers[1]==playerTwo.marker&&markers[2]==playerTwo.marker){
-    chk=markers[0]==playerOne.marker?playerOne.name:playerTwo.name
-    para.textContent=chk+' '+'won'
-    gameCheck=true
-    }else if (markers[0]==playerOne.marker&&markers[3]==playerOne.marker&&markers[6]==playerOne.marker||
-    markers[0]==playerTwo.marker&&markers[3]==playerTwo.marker&&markers[6]==playerTwo.marker){
-    chk=markers[0]==playerOne.marker?playerOne.name:playerTwo.name
-    para.textContent=chk+' '+'won'
-    gameCheck=true
-    }else if (markers[0]==playerOne.marker&&markers[4]==playerOne.marker&&markers[8]==playerOne.marker||
-    markers[0]==playerTwo.marker&&markers[4]==playerTwo.marker&&markers[8]==playerTwo.marker){
-    chk=markers[0]==playerOne.marker?playerOne.name:playerTwo.name
-    para.textContent=chk+' '+'won'
-    gameCheck=true
-    }else if (markers[1]==playerOne.marker&&markers[4]==playerOne.marker&&markers[7]==playerOne.marker||
-    markers[1]==playerTwo.marker&&markers[4]==playerTwo.marker&&markers[7]==playerTwo.marker){
-    chk=markers[1]==playerOne.marker?playerOne.name:playerTwo.name
-    para.textContent=chk+' '+'won'
-    gameCheck=true
-    }else if (markers[2]==playerOne.marker&&markers[4]==playerOne.marker&&markers[6]==playerOne.marker||
-    markers[2]==playerTwo.marker&&markers[4]==playerTwo.marker&&markers[6]==playerTwo.marker){
-    chk=markers[2]==playerOne.marker?playerOne.name:playerTwo.name
-    para.textContent=chk+' '+'won'
-    gameCheck=true
-    }else if (markers[2]==playerOne.marker&&markers[5]==playerOne.marker&&markers[8]==playerOne.marker||
-    markers[0]==playerTwo.marker&&markers[4]==playerTwo.marker&&markers[8]==playerTwo.marker){
-    chk=markers[2]==playerOne.marker?playerOne.name:playerTwo.name
-    para.textContent=chk+' '+'won'
-    gameCheck=true
     }
-    else if (markers[3]==playerOne.marker&&markers[4]==playerOne.marker&&markers[5]==playerOne.marker||
-    markers[3]==playerTwo.marker&&markers[4]==playerTwo.marker&&markers[5]==playerTwo.marker){
-    chk=markers[3]==playerOne.marker?playerOne.name:playerTwo.name
-    para.textContent=chk+' '+'won'
-    gameCheck=true
-    }else if (markers[0]==playerOne.marker&&markers[4]==playerOne.marker&&markers[8]==playerOne.marker||
-    markers[0]==playerTwo.marker&&markers[4]==playerTwo.marker&&markers[8]==playerTwo.marker){
-    chk=markers[4]==playerOne.marker?playerOne.name:playerTwo.name
-    para.textContent=chk+' '+'won'
-    gameCheck=true
-  
-    }else if (markers[6]==playerOne.marker&&markers[7]==playerOne.marker&&markers[8]==playerOne.marker||
-    markers[6]==playerTwo.marker&&markers[7]==playerTwo.marker&&markers[8]==playerTwo.marker){
-    chk=markers[6]==playerOne.marker?playerOne.name:playerTwo.name
-    para.textContent=chk+' '+'won'
-    gameCheck=true
-    }else if((markers.length==9)&&(!markers.includes(''))){
-      para.textContent=`it's a tie`
-    }
-}
-// Reset
 let lastReset=''
-function resetDiv(){
-  markers=[]
+const resetDiv=()=>{
+  gameModule.markers=['','','','','','','','',''];
   lastReset='something'
   const divs=document.querySelectorAll('.div')
   para.textContent=''
   for (let i=0;i<divs.length;i++){
   divs[i].textContent=''
   }
-  remove()
 }
-// remove event listeners
-function remove(){
-  const divs=document.querySelectorAll('.div')
-    for (let i=0;i<divs.length;i++){
-      btn.addEventListener('click',makeDivs)
-    }
+return {
+  makeDivs:makeDivs,
+  resetDiv:resetDiv,
 }
- // Initalize
-  const start=btn.addEventListener('click',makeDivs)
-  const end=reset.addEventListener('click',resetDiv)
-  return{
-    start,
-    end
-  }
-})();
+})()
 
-
+// Initalize
+const start=btn.addEventListener('click',displayController.makeDivs)
+const end=reset.addEventListener('click',displayController.resetDiv)
