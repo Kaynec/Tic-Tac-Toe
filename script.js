@@ -10,7 +10,7 @@ const Players = (()=> {
     }else if (Btn2.checked){
       playerOne =personFactory(chkplayer1,'X')
       playerTwo =personFactory(chkplayer2,'O')
-    }else if (Btn2.checked&&Btn1.checked){
+    }else if (!Btn2.checked&&!Btn1.checked){
       playerOne =personFactory(chkplayer1,'O')
       playerTwo =personFactory(chkplayer2,'X')
     }
